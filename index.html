@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Infinity | Cortes Premium</title>
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* 
+         * 1. CORE & VARIABLES 
+         */
+        :root {
+            --color-bg-dark: #121212;
+            --color-bg-card: #1e1e1e;
+            --color-bg-light: #f4f1ea;
+            --color-text-main: #f4f1ea;
+            --color-text-dark: #121212;
+            --color-accent: #c59d5f;
+            /* Dourado */
+            --color-accent-hover: #d4ad73;
+            --color-error: #e74c3c;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            --transition: all 0.3s ease;
+            --spacing-container: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Utilitários */
+        .container {
+            max-width: var(--spacing-container);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--color-accent);
+            color: var(--color-bg-dark);
+            padding: 12px 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: var(--color-bg-dark);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #999;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 
+         * 2. HEADER 
+         */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(18, 18, 18, 0.95);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--color-text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        /* 
+         * 3. HERO SECTION 
+         */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+            background:
+                linear-gradient(to right,
+                    rgba(18, 18, 18, 0.92) 35%,
+                    rgba(18, 18, 18, 0.6) 65%,
+                    rgba(18, 18, 18, 0.3) 100%),
+                url("assets/hero-bg.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .hero-content p {
+            color: #ccc;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* 
+         * 4. SERVICES GALLERY (NOVA SEÇÃO)
+         */
+        #services {
+            padding: 100px 0;
+            background-color: var(--color-bg-dark);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-card {
+            background: var(--color-bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-card:hover .img-container img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .card-content .price {
+            color: var(--color-accent);
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* 
+         * 5. BOOKING SECTION 
+         */
+        #booking-section {
+            padding: 100px 0;
+            background: #181818;
+        }
+
+        .booking-container {
+            background: var(--color-bg-card);
+            padding: 40px;
+            border-radius: 4px;
+            border: 1px solid rgba(197, 157, 95, 0.2);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--color-accent);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: #121212;
+            border: 1px solid #333;
+            color: #fff;
+            font-family: var(--font-body);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .slot {
+            padding: 10px;
+            background: #121212;
+            border: 1px solid #333;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .slot:hover:not(.disabled) {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .slot.selected {
+            background: var(--color-accent);
+            color: var(--color-bg-dark);
+            border-color: var(--color-accent);
+        }
+
+        .slot.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        /* 
+         * 6. LOCATION SECTION (NOVA SEÇÃO)
+         */
+        #location {
+            padding: 0;
+            background-color: var(--color-bg-light);
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .location-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 80px;
+            background-color: var(--color-bg-card);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .location-info h2 {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            margin-bottom: 30px;
+        }
+
+        .info-item h4 {
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .info-item p {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
+        .location-map {
+            flex: 1;
+            min-width: 400px;
+            height: 600px;
+            position: relative;
+            background: #ccc;
+        }
+
+        /* Filtro grayscale para o mapa */
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(100%) invert(92%) contrast(83%);
+        }
+
+        /* 
+         * 7. ADMIN & MODALS 
+         */
+        #admin-panel {
+            display: none;
+            padding: 100px 0;
+            background: var(--color-bg-dark);
+            border-top: 1px solid #333;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--color-bg-card);
+            margin-top: 20px;
+        }
+
+        .admin-table th,
+        .admin-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .admin-table th {
+            background: #121212;
+            color: var(--color-accent);
+        }
+
+        .admin-table tr:hover {
+            background: #252525;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: var(--color-bg-card);
+            padding: 40px;
+            border: 1px solid var(--color-accent);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .modal h2 {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background: #000;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .location-info {
+                padding: 40px;
+            }
+
+            .location-map {
+                height: 300px;
+                min-width: 100%;
+            }
+
+            #hero {
+                background-position: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-accent)">
+                        <circle cx="6" cy="6" r="3"></circle>
+                        <circle cx="6" cy="18" r="3"></circle>
+                        <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                        <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                        <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+                    </svg>
+                    INFINITY
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#services">Nossos Cortes</a></li>
+                    <li><a href="#booking-section">Agendar</a></li>
+                    <li><a href="#location">Localização</a></li>
+                    <li id="admin-link" style="display: none;"><a href="#admin-panel"
+                            style="color: var(--color-error);">Admin</a></li>
+                </ul>
+                <div class="auth-buttons" id="auth-container">
+                    <!-- Injetado via JS -->
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Redefinindo o Conceito de Barbearia Clássica</h1>
+                <p>Estilo, precisão e uma experiência de luxo. Seu visual merece a excelência da Infinity.</p>
+                <a href="#booking-section" class="btn">Agendar Agora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES GALLERY -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <p class="section-subtitle">Combinamos técnicas tradicionais com tendências modernas.</p>
+
+            <div class="gallery-grid">
+                <!-- Card 1 -->
+                <div class="gallery-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Corte Clássico">
+                    </div>
+                    <div class="card-content">
+                        <h3>Corte Clássico</h3>
+                        <span class="price">R$ 40,00</span>
+                        <p>Tesoura e máquina com acabamento premium e lavagem incluída.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="gallery-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Barba Real">
+                    </div>
+                    <div class="card-content">
+                        <h3>Barba Real</h3>
+                        <span class="price">R$ 25,00</span>
+                        <p>Toalha quente, navalha afiada e hidratação profunda.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="gallery-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1593526613712-7b4b9a707330?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Acabamento">
+                    </div>
+                    <div class="card-content">
+                        <h3>Infinity Combo</h3>
+                        <span class="price">R$ 50,00</span>
+                        <p>A experiência completa. Corte, Barba e Sobrancelha.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING SECTION -->
+    <section id="booking-section">
+        <div class="container">
+            <h2 class="section-title">Agende seu Horário</h2>
+
+            <div id="booking-ui" class="booking-container">
+                <!-- Se não logado -->
+                <div id="login-warning" style="text-align: center; padding: 40px;">
+                    <p style="margin-bottom: 20px; color: #fff;">Você precisa estar logado para realizar um agendamento.
+                    </p>
+                    <button class="btn" onclick="openModal('login-modal')">Entrar na Minha Conta</button>
+                </div>
+
+                <!-- Se logado -->
+                <form id="booking-form" style="display: none;">
+                    <div class="form-group">
+                        <label>Serviço</label>
+                        <select id="service-select" required>
+                            <option value="Corte de Cabelo - R$ 40,00">Corte de Cabelo (30min)</option>
+                            <option value="Barba Tradicional - R$ 25,00">Barba Tradicional (15min)</option>
+                            <option value="Combo Corte + Barba - R$ 50,00">Combo Corte + Barba + Sobrancelha (50min)
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data</label>
+                        <input type="date" id="date-select" required>
+                        <small style="color: #666; font-size: 0.8rem; display: block; margin-top: 5px;">*Segunda a
+                            Sexta, 08:00 às 19:00</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Horário Disponível</label>
+                        <div id="slots-container" class="time-slots">
+                            <p style="grid-column: 1/-1; color: #666; text-align: center;">Selecione uma data para ver
+                                os horários.</p>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="selected-time">
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Confirmar
+                        Agendamento</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION SECTION -->
+    <section id="location">
+        <div class="location-info">
+            <h2>Onde nos Encontrar</h2>
+            <div class="info-item">
+                <h4>Endereço</h4>
+                <p>Av. Paulista, 1000 - Bela Vista</p>
+                <p>São Paulo - SP, 01310-100</p>
+            </div>
+            <div class="info-item">
+                <h4>Contato</h4>
+                <p>(11) 99999-9999</p>
+                <p>contato@infinitybarber.com</p>
+            </div>
+            <div class="info-item">
+                <h4>Horários</h4>
+                <p>Segunda a Sexta: 08h - 19h</p>
+                <p>Sábado: 09h - 14h</p>
+            </div>
+            <a href="https://maps.google.com" target="_blank" class="btn-outline"
+                style="text-align:center; display:inline-block; margin-top:20px;">Abrir no GPS</a>
+        </div>
+        <div class="location-map">
+            <!-- Iframe do Google Maps -->
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.098170217036!2d-46.65402632375385!3d-23.564916861726053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1709228391123!5m2!1spt-BR!2sbr"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- ADMIN PANEL -->
+    <section id="admin-panel">
+        <div class="container">
+            <h2 class="section-title">Painel Administrativo</h2>
+            <div style="background: var(--color-bg-card); padding: 20px; border-radius: 4px;">
+                <h3 style="color: #fff; margin-bottom: 20px;">Agendamentos Confirmados</h3>
+                <div style="overflow-x: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Serviço</th>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body">
+                            <!-- JS popula aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 20px; color: #fff;">
+                INFINITY
+            </div>
+            <p>&copy; 2025 Barbearia Infinity. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('login-modal')">&times;</span>
+            <h2>Entrar</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" id="login-email" required placeholder="admin ou seu email">
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="login-password" required placeholder="password">
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Entrar</button>
+                <p style="margin-top: 15px; text-align: center; font-size: 0.9rem;">
+                    Não tem conta? <a href="#" onclick="switchModal('login-modal', 'register-modal')"
+                        style="color: var(--color-accent);">Cadastre-se</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('register-modal')">&times;</span>
+            <h2>Criar Conta</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label>Nome Completo</label>
+                    <input type="text" id="reg-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="reg-password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Cadastrar</button>
+                <p style="margin-top: 15px; text-align: center; font-size: 0.9rem;">
+                    Já tem conta? <a href="#" onclick="switchModal('register-modal', 'login-modal')"
+                        style="color: var(--color-accent);">Faça Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * LÓGICA DO FRONT-END (Vanilla JS)
+         */
+
+        const State = {
+            currentUser: null,
+            appointments: [],
+            users: []
+        };
+
+        // --- 1. STORAGE HELPER ---
+        const Storage = {
+            get: (key) => JSON.parse(localStorage.getItem(key)),
+            set: (key, value) => localStorage.setItem(key, JSON.stringify(value)),
+            init: () => {
+                if (!Storage.get('infinity_users')) {
+                    const admin = { name: 'Administrador', email: 'admin', password: 'password', role: 'admin' };
+                    Storage.set('infinity_users', [admin]);
+                }
+                if (!Storage.get('infinity_appointments')) {
+                    Storage.set('infinity_appointments', []);
+                }
+            }
+        };
+
+        // --- 2. AUTHENTICATION SYSTEM ---
+        const Auth = {
+            check: () => {
+                const session = sessionStorage.getItem('infinity_session');
+                if (session) {
+                    State.currentUser = JSON.parse(session);
+                    UI.updateAuthNav();
+                    UI.toggleBookingView(true);
+                    if (State.currentUser.role === 'admin') UI.showAdminPanel();
+                } else {
+                    UI.toggleBookingView(false);
+                }
+            },
+            login: (email, password) => {
+                const users = Storage.get('infinity_users');
+                const user = users.find(u => u.email === email && u.password === password);
+
+                if (user) {
+                    State.currentUser = user;
+                    sessionStorage.setItem('infinity_session', JSON.stringify(user));
+                    closeModal('login-modal');
+                    UI.updateAuthNav();
+                    UI.toggleBookingView(true);
+                    if (user.role === 'admin') {
+                        UI.showAdminPanel();
+                        Admin.renderTable();
+                    }
+                    alert(`Bem-vindo, ${user.name}!`);
+                } else {
+                    alert('Credenciais inválidas. Tente: admin / password');
+                }
+            },
+            logout: () => {
+                sessionStorage.removeItem('infinity_session');
+                State.currentUser = null;
+                location.reload();
+            },
+            register: (name, email, password) => {
+                const users = Storage.get('infinity_users');
+                if (users.find(u => u.email === email)) {
+                    alert('Email já cadastrado.');
+                    return;
+                }
+                const newUser = { name, email, password, role: 'user' };
+                users.push(newUser);
+                Storage.set('infinity_users', users);
+                alert('Cadastro realizado com sucesso! Faça login.');
+                switchModal('register-modal', 'login-modal');
+            }
+        };
+
+        // --- 3. BOOKING LOGIC ---
+        const Booking = {
+            generateSlots: (dateString) => {
+                const slots = [];
+                const startHour = 8;
+                const endHour = 19;
+
+                for (let h = startHour; h < endHour; h++) {
+                    slots.push(`${h.toString().padStart(2, '0')}:00`);
+                    slots.push(`${h.toString().padStart(2, '0')}:30`);
+                }
+                return slots;
+            },
+            isSlotTaken: (date, time) => {
+                const appts = Storage.get('infinity_appointments');
+                return appts.some(a => a.date === date && a.time === time);
+            },
+            isValidDay: (dateString) => {
+                const day = new Date(dateString + 'T00:00:00').getDay();
+                return day !== 0 && day !== 6;
+            },
+            save: (service, date, time) => {
+                const appts = Storage.get('infinity_appointments');
+                const newAppt = {
+                    id: Date.now(),
+                    user: State.currentUser.name,
+                    service,
+                    date,
+                    time,
+                    status: 'Confirmado'
+                };
+                appts.push(newAppt);
+                Storage.set('infinity_appointments', appts);
+
+                const phone = "5511999999999";
+                const msg = `Olá! Gostaria de confirmar meu agendamento na Barbearia Infinity.%0A%0A*Nome:* ${State.currentUser.name}%0A*Serviço:* ${service}%0A*Data:* ${date}%0A*Horário:* ${time}`;
+                window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+
+                alert('Agendamento realizado! Redirecionando para WhatsApp...');
+                document.getElementById('booking-form').reset();
+                UI.renderSlots(date);
+
+                if (State.currentUser.role === 'admin') Admin.renderTable();
+            }
+        };
+
+        // --- 4. ADMIN LOGIC ---
+        const Admin = {
+            renderTable: () => {
+                const appts = Storage.get('infinity_appointments');
+                const tbody = document.getElementById('admin-table-body');
+                tbody.innerHTML = '';
+
+                appts.sort((a, b) => new Date(a.date + 'T' + a.time) - new Date(b.date + 'T' + b.time));
+
+                appts.forEach(appt => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${appt.user}</td>
+                        <td>${appt.service.split('-')[0]}</td>
+                        <td>${new Date(appt.date).toLocaleDateString('pt-BR')}</td>
+                        <td>${appt.time}</td>
+                        <td style="color: #4cd137">${appt.status}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        };
+
+        // --- 5. UI CONTROLLERS ---
+        const UI = {
+            updateAuthNav: () => {
+                const container = document.getElementById('auth-container');
+                if (State.currentUser) {
+                    container.innerHTML = `
+                        <span style="display:flex; align-items:center; font-size:0.9rem;">Olá, ${State.currentUser.name.split(' ')[0]}</span>
+                        <button class="btn-outline" onclick="Auth.logout()">Sair</button>
+                    `;
+                } else {
+                    container.innerHTML = `
+                        <button class="btn-outline" onclick="openModal('login-modal')">Entrar</button>
+                        <button class="btn" onclick="openModal('register-modal')">Cadastrar</button>
+                    `;
+                }
+            },
+            toggleBookingView: (isLogged) => {
+                document.getElementById('login-warning').style.display = isLogged ? 'none' : 'block';
+                document.getElementById('booking-form').style.display = isLogged ? 'block' : 'none';
+            },
+            showAdminPanel: () => {
+                document.getElementById('admin-link').style.display = 'block';
+                document.getElementById('admin-panel').style.display = 'block';
+                Admin.renderTable();
+            },
+            renderSlots: (date) => {
+                const container = document.getElementById('slots-container');
+                container.innerHTML = '';
+
+                if (!Booking.isValidDay(date)) {
+                    container.innerHTML = '<p style="grid-column: 1/-1; color: var(--color-error); text-align: center;">Estamos fechados aos finais de semana. Por favor, escolha de Segunda a Sexta.</p>';
+                    return;
+                }
+
+                const slots = Booking.generateSlots(date);
+
+                slots.forEach(time => {
+                    const isTaken = Booking.isSlotTaken(date, time);
+                    const div = document.createElement('div');
+                    div.className = `slot ${isTaken ? 'disabled' : ''}`;
+                    div.textContent = time;
+
+                    if (!isTaken) {
+                        div.onclick = function () {
+                            document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+                            this.classList.add('selected');
+                            document.getElementById('selected-time').value = time;
+                        };
+                    }
+                    container.appendChild(div);
+                });
+            }
+        };
+
+        // --- 6. EVENT LISTENERS & INIT ---
+
+        window.openModal = (id) => {
+            document.getElementById(id).classList.add('active');
+        };
+        window.closeModal = (id) => {
+            document.getElementById(id).classList.remove('active');
+        };
+        window.switchModal = (closeId, openId) => {
+            closeModal(closeId);
+            setTimeout(() => openModal(openId), 300);
+        };
+
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            Auth.login(document.getElementById('login-email').value, document.getElementById('login-password').value);
+        });
+
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            Auth.register(
+                document.getElementById('reg-name').value,
+                document.getElementById('reg-email').value,
+                document.getElementById('reg-password').value
+            );
+        });
+
+        const dateInput = document.getElementById('date-select');
+        dateInput.min = new Date().toISOString().split('T')[0];
+
+        dateInput.addEventListener('change', (e) => {
+            UI.renderSlots(e.target.value);
+            document.getElementById('selected-time').value = '';
+        });
+
+        document.getElementById('booking-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const service = document.getElementById('service-select').value;
+            const date = document.getElementById('date-select').value;
+            const time = document.getElementById('selected-time').value;
+
+            if (!time) {
+                alert('Por favor, selecione um horário disponível.');
+                return;
+            }
+            Booking.save(service, date, time);
+        });
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            Storage.init();
+            Auth.check();
+        });
+
+    </script>
+</body>
+
+</html>
